@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <HelloWorld name="lwj" msg="Welcome to Your Vue.js + TypeScript App">
+      <div>1111</div>
+    </HelloWorld>
     <img alt="Vue logo" src="../assets/logo.png">
     {{count}}
     <button @click="increase">++</button>
@@ -11,7 +14,8 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered,watch} from 'vue';
+import { ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
+import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 interface DataProps {
   count: number;
   double: number;
@@ -19,6 +23,9 @@ interface DataProps {
   increase: () => void
 }
 export default {
+  components: {
+    HelloWorld,
+  },
   setup() {
     // const count = ref(0)
     // let double = computed(() => count.value * 2)
@@ -31,11 +38,11 @@ export default {
     //   double
     // }
     onMounted(() => {
-      console.log('onMounted')
-    })
+      console.log('onMounted');
+    });
     onUpdated(() => {
-      console.log('onUpdated')
-    })
+      console.log('onUpdated');
+    });
     // onRenderTriggered((ev) => { // !data更新触发
     //   console.log('onRenderTriggered')
     //   console.log(ev)
@@ -44,30 +51,30 @@ export default {
     //   console.log('onRenderTracked')
     //   console.log(ev)
     // })
-    const greetings = ref('')
+    const greetings = ref('');
     const updateGreetings = () => {
-      greetings.value += 'hello'
-    }
+      greetings.value += 'hello';
+    };
     
 
     let data: DataProps = reactive({
       count: 0,
       double: computed(() => data.count * 2),
-      increase: () => { data.count++ },
+      increase: () => { data.count++; },
       greetings: '',
-      updateGreetings: () => { data.greetings += 'hello' },
-    })
-    let refData = toRefs(data)
+      updateGreetings: () => { data.greetings += 'hello'; },
+    });
+    let refData = toRefs(data);
     //console.log(refData)
-    watch(refData.greetings,(newVal,oldVal) => {
-      console.log(newVal,oldVal)
-      document.title = newVal
-    })
+    watch(refData.greetings, (newVal, oldVal) => {
+      console.log(newVal, oldVal);
+      document.title = newVal;
+    });
     return {
       ...refData,
       // greetings,
       // updateGreetings
-    }
+    };
   }
-}
+};
 </script>

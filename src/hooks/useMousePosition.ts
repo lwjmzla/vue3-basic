@@ -1,4 +1,4 @@
-import { ref, onMounted,onUnmounted} from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 function useMousePosition() {
   const x = ref(0);
@@ -9,10 +9,10 @@ function useMousePosition() {
   };
   onMounted(() => {
     console.log('onMounted2');
-    document.addEventListener('click',updateMouse);
+    document.addEventListener('click', updateMouse);
   });
   onUnmounted(() => {
-    document.removeEventListener('click',updateMouse);
+    document.removeEventListener('click', updateMouse);
   });
   return {
     x,

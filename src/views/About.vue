@@ -9,7 +9,7 @@
     </div>
     <div>x:{{x}},y:{{y}}</div>
     <div v-if="loading">loading......</div>
-    <img v-if="loaded" :src="result.message"/>
+    <img class="img" v-if="loaded" :src="result.message || result[0].url"/>
   </div>
 </template>
 
@@ -25,6 +25,12 @@ interface DataProps {
 interface DogResult {
   message: string;
   status: string;
+}
+interface CatResult {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
 }
 export default {
   setup() {
@@ -59,10 +65,13 @@ export default {
     
     const { x, y } = useMousePosition();
 
-    const { result, loading, loaded } = useUrlLoader<DogResult>('https://dog.ceo/api/breeds/image/random');
+    //const { result, loading, loaded } = useUrlLoader<DogResult>('https://dog.ceo/api/breeds/image/random');
+    //const { result, loading, loaded } = useUrlLoader<CatResult[]>('https://api.thecatapi.com/v1/images/search?limit=1');
+    const { result, loading, loaded } = useUrlLoader<Array<CatResult>>('https://api.thecatapi.com/v1/images/search?limit=1');
     watch(result, (newVal, oldVal) => {
-      console.log(result.value?.message);
-      console.log(newVal?.message);
+      // console.log(result.value?.message);
+      // console.log(newVal?.message);
+      console.log(newVal?.[0].url);
     });
 
     let data: DataProps = reactive({
@@ -85,6 +94,15 @@ export default {
       y,
       result, loading, loaded
     };
-  }
+  },
+  mounted() {
+    console.log('mounted');
+  },
 };
 </script>
+
+<style lang="scss" scoped>
+.img{
+  max-width: 600px;
+}
+</style>
