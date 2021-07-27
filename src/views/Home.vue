@@ -3,6 +3,7 @@
     <HelloWorld name="lwj" msg="Welcome to Your Vue.js + TypeScript App">
       <div>1111</div>
     </HelloWorld>
+    <Test></Test>
     <img alt="Vue logo" src="../assets/logo.png">
     {{count}}
     <button @click="increase">++</button>
@@ -16,6 +17,7 @@
 <script lang="ts">
 import { ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Test from '@/components/Test.vue';
 interface DataProps {
   count: number;
   double: number;
@@ -25,6 +27,7 @@ interface DataProps {
 export default {
   components: {
     HelloWorld,
+    Test
   },
   setup() {
     // const count = ref(0)

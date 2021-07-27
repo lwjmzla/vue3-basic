@@ -15,6 +15,11 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // vue rules
+    'vue/script-indent': ['error', 2, {
+      'baseIndent': 0,
+      'switchCase': 1,
+      'ignores': []
+    }],
     'vue/html-indent': ['error', 2, {
       'attribute': 1,
       'closeBracket': 0,
