@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 
-function usePage(changeFn) {
+function usePage(changeFn: any) {
   const page = reactive({
     currentPage: 1,
     pageSizes: [5, 10, 20],

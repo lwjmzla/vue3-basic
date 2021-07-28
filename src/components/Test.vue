@@ -18,6 +18,9 @@
       :total="total"
     >
     </el-pagination>
+    <teleport to='#dialog'>
+      <div class="dialog">111111</div>
+    </teleport>>
   </div>
 </template>
 
@@ -40,3 +43,10 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped lang="scss">
+  .dialog{
+    position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;
+    width: 200px;height: 200px;border: 1px solid red;
+    line-height: 200px;text-align: center;background: #fff;
+  }
+</style>
