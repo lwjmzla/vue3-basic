@@ -18,35 +18,42 @@
       :total="total"
     >
     </el-pagination>
-    <teleport to='#dialog'>
-      <div class="dialog">111111</div>
-    </teleport>>
+    <Modal v-model:flag="flag" :msg="msg" @modifyMsg="msg = $event">modal</Modal>
+
+    <el-button @click="handleOpenModal">openModal</el-button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from "vue";
+import Modal from './Modal.vue';
+import { defineComponent, toRefs, ref } from "vue";
 import usePage from "@/hooks/usePage";
 import useArticleList from "@/hooks/useArticleList";
 export default defineComponent({
+  components: {
+    Modal
+  },
   setup() {
     const { articleList, getList } = useArticleList();
     const { page, handleSizeChange, handleCurrentChange } = usePage(getList);
     getList(page);
+    let flag = ref(false);
+    const handleOpenModal = () => {
+      flag.value = true;
+    };
     return {
       ...toRefs(page), // !currentPage pageSizes等等就不明确了。
       articleList,
       //getList,
       handleSizeChange,
       handleCurrentChange,
+      flag,
+      handleOpenModal,
+      msg: ref('my msg')
     };
   },
 });
 </script>
 <style scoped lang="scss">
-  .dialog{
-    position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;
-    width: 200px;height: 200px;border: 1px solid red;
-    line-height: 200px;text-align: center;background: #fff;
-  }
+  
 </style>
