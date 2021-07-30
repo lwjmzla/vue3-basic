@@ -3,7 +3,7 @@
     <div class="dialog" v-if="flag">
       <slot></slot>
       <el-button @click="closeModal">关闭</el-button>
-      <div>{{msg}}</div>
+      <div v-bind="$attrs">{{$attrs}}</div>
     </div>
   </teleport>
 </template>
@@ -11,6 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 let component = defineComponent({
+  inheritAttrs: false,
   name: 'HelloWorld',
   props: {
     flag: Boolean,

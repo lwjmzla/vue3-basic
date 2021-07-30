@@ -18,7 +18,7 @@
       :total="total"
     >
     </el-pagination>
-    <Modal v-model:flag="flag" :msg="msg" @modifyMsg="msg = $event">modal</Modal>
+    <Modal class="test" style="background:red;" v-model:flag="flag" :msg="msg" @modifyMsg="msg = $event">modal</Modal>
 
     <el-button @click="handleOpenModal">openModal</el-button>
   </div>
