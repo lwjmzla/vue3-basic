@@ -35,12 +35,20 @@ export default defineComponent({
   },
   setup() {
     const { articleList, getList } = useArticleList();
-    const { page, handleSizeChange, handleCurrentChange } = usePage(getList);
-    getList(page);
+    const { page } = usePage('');
+    getList(page); // !其实我不喜欢传闭包进去，我喜欢获取值后，在这里给page.total赋值
     let flag = ref(false);
     const handleOpenModal = () => {
       flag.value = true;
     };
+    function handleSizeChange(val:number) {
+      page.pageSize = val;
+      getList(page);
+    }
+    function handleCurrentChange(val:number) {
+      page.currentPage = val;
+      getList(page);
+    }
     return {
       ...toRefs(page), // !currentPage pageSizes等等就不明确了。
       articleList,

@@ -51,7 +51,8 @@ module.exports = {
     'semi': ['error', 'always'],
     "space-infix-ops": ["error", {"int32Hint": false}],
     "object-curly-spacing": ["error", "always"],
-    "comma-spacing": ["error", { "before": false, "after": true }]
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "@typescript-eslint/no-explicit-any": ["off"]
   },
   'overrides': [
     {
@@ -64,7 +65,7 @@ module.exports = {
         'vue/html-closing-bracket-newline': 0,
         'vue/multiline-html-element-content-newline': 0,
         'vue/attribute-hyphenation': 0,
-        'vue/prop-name-casing': 0 // !取消prop驼峰校验
+        'vue/prop-name-casing': 0, // !取消prop驼峰校验
       }
     }
   ]

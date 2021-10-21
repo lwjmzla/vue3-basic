@@ -1,8 +1,11 @@
 import { ref } from 'vue';
 import axios from 'axios';
 
+const obj:Record<string, unknown> = { a: 'lwj' };
+console.log(obj);
+
 function useUrlLoader<T>(url: string) {
-  const result = ref<T | null>(null);
+  const result = ref<T | Record<string, any>>({});
   const loading = ref(true);
   const loaded = ref(false);
   const error = ref(null);
