@@ -7,7 +7,7 @@
     </HelloWorld>
     <Suspense>
       <template #default>
-        <AsyncComponent></AsyncComponent>
+        <AsyncComponent v-model="num" v-model:str="str"></AsyncComponent>
       </template>
       <template #fallback>
         <div>
@@ -19,7 +19,12 @@
 </template>
 
 <script lang="ts" setup>
+import { watch, ref } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import AsyncComponent from '@/components/AsyncComponent.vue'; // @ is an alias to /src
-const num = 2;
+const num = ref(2);
+const str = ref('');
+watch(num, (newVal, oldVal) => {
+  console.log(newVal, oldVal);
+});
 </script>
