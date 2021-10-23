@@ -26,10 +26,13 @@ import { defineComponent, ref, computed, reactive, toRefs, ComputedRef, onMounte
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Test from '@/components/Test.vue';
 interface DataProps {
+  price: string | number;
   count: number;
   double: number;
   greetings: string;
-  increase: () => void
+  increase: () => void;
+  handleChange: (val: number) => void;
+  updateGreetings: () => void;
 }
 export default defineComponent({
   components: {
@@ -68,7 +71,7 @@ export default defineComponent({
     
 
     let data: DataProps = reactive({
-      price: '',
+      price: 0,
       count: 0,
       double: computed(() => data.count * 2),
       increase: () => { data.count++; },

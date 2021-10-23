@@ -8,6 +8,9 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+
+interface IAsyncData{name: string}
+
 export default defineComponent({
   name: 'AsyncComponent',
   props: {
@@ -26,8 +29,8 @@ export default defineComponent({
   },
   async setup(props, context) {
     console.log(props);
-    let asyncData = ref({});
-    asyncData.value = await new Promise<{name: string}>((resolve, reject) => {
+    let asyncData = ref({} as IAsyncData);
+    asyncData.value = await new Promise<IAsyncData>((resolve, reject) => {
       setTimeout(() => {
         resolve({ name: 'lwj' });
       }, 1000);
