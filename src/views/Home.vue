@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="homeRef">
     <el-input-number
       v-model="price"
       :controls="false"
@@ -10,7 +10,9 @@
     <HelloWorld name="lwj" msg="Welcome to Your Vue.js + TypeScript App">
       <div>{{price}}</div>
     </HelloWorld>
-    <Test></Test>
+    <div ref="testRef">
+      <Test></Test>
+    </div>
     <img alt="Vue logo" src="../assets/logo.png">
     {{count}}
     <button @click="increase">++</button>
@@ -25,6 +27,7 @@
 import { defineComponent, ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Test from '@/components/Test.vue';
+import useClickOutside from '../hooks/useClickOutside';
 interface DataProps {
   price: string | number;
   count: number;
@@ -50,8 +53,10 @@ export default defineComponent({
     //   increase,
     //   double
     // }
+
     onMounted(() => {
       console.log('onMounted');
+      console.log(testRef.value);
     });
     onUpdated(() => {
       console.log('onUpdated');
@@ -69,6 +74,11 @@ export default defineComponent({
       greetings.value += 'hello';
     };
     
+    const testRef = ref<null | HTMLElement>(null);
+    const isClickOutside  = useClickOutside(testRef);
+    watch(isClickOutside, (newVal, oldVal) => {
+      console.log(newVal);
+    });
 
     let data: DataProps = reactive({
       price: 0,
@@ -92,6 +102,7 @@ export default defineComponent({
       document.title = newVal;
     });
     return {
+      testRef,
       ...refData,
       // greetings,
       // updateGreetings
