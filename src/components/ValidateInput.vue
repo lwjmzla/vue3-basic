@@ -1,6 +1,6 @@
 <template>
   <div class="validate-input">
-    <el-input v-model="inputRef.val" @blur="validateInput"></el-input>
+    <el-input v-model="inputRef.val" @blur="validateInput" v-bind="$attrs"></el-input>
     <p v-show="inputRef.isError">{{inputRef.message}}</p>
   </div>
 </template>

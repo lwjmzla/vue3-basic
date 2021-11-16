@@ -5,7 +5,7 @@
     <HelloWorld name="lwj" msg="Welcome to Your Vue.js + TypeScript App">
       asdasd
     </HelloWorld>
-    <ValidateInput v-model="inputVal" :rules="emailRules"></ValidateInput>
+    <ValidateInput v-model="inputVal" :rules="emailRules" placeholder="请输入"></ValidateInput>
     <Suspense>
       <template #default>
         <AsyncComponent v-model="num" v-model:str="str"></AsyncComponent>
@@ -33,7 +33,7 @@ export default defineComponent({
   setup() {
     const num = ref(2);
     const str = ref('');
-    const inputVal = ref('123');
+    const inputVal = ref('');
     watch(num, (newVal, oldVal) => {
       console.log(newVal, oldVal);
     });
