@@ -7,6 +7,7 @@
 
 <script lang="ts">
 import { defineComponent, watch, ref, PropType, reactive, onMounted } from 'vue';
+import { emitter } from './ValidateForm.vue';
 export interface RuleProp {
   type: 'required' | 'email';
   message: string;
@@ -28,6 +29,7 @@ export default defineComponent({
   setup(props, context) {
     onMounted(() => {
       inputRef.val = props.modelValue;
+      emitter.emit('form-item-created', validateInput);
     });
     
     const inputRef = reactive({
@@ -56,7 +58,9 @@ export default defineComponent({
           return pass;
         });
         inputRef.isError = !isPassValidate;
+        return isPassValidate;
       }
+      return true;
     };
     return {
       inputRef,
