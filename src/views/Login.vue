@@ -1,7 +1,7 @@
 <template>
   <div class="login-page mx-auto p-3 w-330">
     <h5 class="my-4 text-center">登录到者也</h5>
-    <validate-form @form-submit="onFormSubmit">
+    <validate-form ref="validateFormRef">
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
         <validate-input
@@ -21,7 +21,7 @@
         />
       </div>
       <template #submit>
-        <button type="submit" class="btn btn-primary btn-block btn-large">登录</button>
+        <button type="submit" class="btn btn-primary btn-block btn-large" @click.prevent="submit">登录</button>
       </template>
     </validate-form>
   </div>
@@ -39,6 +39,7 @@ export default defineComponent({
     ValidateForm
   },
   setup() {
+    const validateFormRef = ref(null);
     const emailVal = ref('');
     const emailRules: RuleProp[] = [
       { type: 'required', message: '电子邮箱地址不能为空' },
@@ -48,20 +49,19 @@ export default defineComponent({
     const passwordRules: RuleProp[] = [
       { type: 'required', message: '密码不能为空' }
     ];
-    const onFormSubmit = (result: boolean) => {
-      if (result) {
-        const payload = {
-          email: emailVal.value,
-          password: passwordVal.value
-        };
+    const submit = () => {
+      const isPassValidate = (validateFormRef.value as any).validate();
+      if (isPassValidate) {
+        console.log(1);
       }
     };
     return {
+      validateFormRef,
       emailRules,
       emailVal,
       passwordVal,
       passwordRules,
-      onFormSubmit
+      submit
     };
   }
 });
