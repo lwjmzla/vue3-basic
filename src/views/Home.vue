@@ -74,7 +74,7 @@ export default defineComponent({
       greetings.value += 'hello';
     };
     
-    const testRef = ref<null | HTMLElement>(null);
+    const testRef = ref<null | HTMLElement>(null); //!名称跟template的一致
     const isClickOutside  = useClickOutside(testRef);
     watch(isClickOutside, (newVal, oldVal) => {
       console.log(newVal);
