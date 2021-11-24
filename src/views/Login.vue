@@ -1,6 +1,6 @@
 <template>
   <div class="login-page mx-auto p-3 w-330">
-    <h5 class="my-4 text-center">登录到者也</h5>
+    <h5 class="my-4 text-center" @click="haha">登录到者也</h5>
     <validate-form ref="validateFormRef">
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, getCurrentInstance  } from 'vue';
 import ValidateInput, { RuleProp } from '../components/ValidateInput.vue';
 import ValidateForm from '../components/ValidateForm.vue';
 
@@ -38,7 +38,15 @@ export default defineComponent({
     ValidateInput,
     ValidateForm
   },
+  methods: {
+    haha() {
+      console.log(this);
+    }
+  },
   setup() {
+    const internalInstance = getCurrentInstance();
+    console.log(internalInstance);
+    internalInstance?.appContext.config.globalProperties.$message.success('成功啦');
     const validateFormRef = ref(null);
     const emailVal = ref('');
     const emailRules: RuleProp[] = [

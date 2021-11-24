@@ -52,7 +52,9 @@ module.exports = {
     "space-infix-ops": ["error", {"int32Hint": false}],
     "object-curly-spacing": ["error", "always"],
     "comma-spacing": ["error", { "before": false, "after": true }],
-    "@typescript-eslint/no-explicit-any": ["off"]
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/explicit-module-boundary-types": ["off"],
+    "@typescript-eslint/no-non-null-assertion": ["off"]
   },
   'overrides': [
     {
