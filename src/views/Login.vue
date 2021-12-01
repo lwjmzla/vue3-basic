@@ -24,11 +24,10 @@
         <button type="submit" class="btn btn-primary btn-block btn-large" @click.prevent="submit">登录</button>
       </template>
     </validate-form>
-    <!-- <uploader
+    <Uploader
       action="/upload"
       :beforeUpload="uploadCheck"
       @file-uploaded="handleFileUploaded"
-      :uploaded="uploadedData"
       class="d-flex align-items-center justify-content-center bg-light text-secondary w-100 my-4"
     >
       <h2>点击上传头图</h2>
@@ -46,7 +45,7 @@
           <h3>点击重新上传</h3>
         </div>
       </template>
-    </uploader> -->
+    </Uploader>
   </div>
 </template>
 
@@ -54,12 +53,14 @@
 import { defineComponent, ref, getCurrentInstance  } from 'vue';
 import ValidateInput, { RuleProp } from '../components/ValidateInput.vue';
 import ValidateForm from '../components/ValidateForm.vue';
+import Uploader from '../components/Uploader.vue';
 
 export default defineComponent({
   name: 'Login',
   components: {
     ValidateInput,
-    ValidateForm
+    ValidateForm,
+    Uploader
   },
   methods: {
     haha() {
@@ -86,13 +87,25 @@ export default defineComponent({
         console.log(1);
       }
     };
+    const uploadCheck = (file: File) => {
+      const isLt2M = file.size / 1024 / 1024 < 2;
+      if (!isLt2M) {
+        internalInstance?.appContext.config.globalProperties.$message.warning('图片大小不能大于2M');
+      }
+      return isLt2M;
+    };
+    const handleFileUploaded = (rawData: any) => {
+      console.log(rawData);
+    };
     return {
       validateFormRef,
       emailRules,
       emailVal,
       passwordVal,
       passwordRules,
-      submit
+      submit,
+      uploadCheck,
+      handleFileUploaded
     };
   }
 });
