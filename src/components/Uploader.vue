@@ -16,6 +16,11 @@
       class="file-input d-none"
       ref="fileInput"
       @change="handleFileChange"
+      accept="
+      .jpg,
+      .jpeg,
+      .png,
+      "
     >
   </div>
 </template>

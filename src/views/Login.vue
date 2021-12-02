@@ -54,6 +54,7 @@ import { defineComponent, ref, getCurrentInstance  } from 'vue';
 import ValidateInput, { RuleProp } from '../components/ValidateInput.vue';
 import ValidateForm from '../components/ValidateForm.vue';
 import Uploader from '../components/Uploader.vue';
+import { useStore } from '../store/index';
 
 export default defineComponent({
   name: 'Login',
@@ -68,9 +69,21 @@ export default defineComponent({
     }
   },
   setup() {
-    const internalInstance = getCurrentInstance();
-    console.log(internalInstance);
-    internalInstance?.appContext.config.globalProperties.$message.success('成功啦');
+    console.log(useStore);
+    const store = useStore();
+    console.log(store.state.account);
+    const account = {
+      userId: '111',
+      username: 'lwj',
+    };
+    setTimeout(() => {
+      console.log(store);
+      store.commit('account/setAccount', account);
+      console.log(store.state.account);
+    }, 1000);
+    
+    const { proxy } = getCurrentInstance() as any;
+    proxy.$message.success(proxy.$token || '成功啦');
     const validateFormRef = ref(null);
     const emailVal = ref('');
     const emailRules: RuleProp[] = [
@@ -90,7 +103,7 @@ export default defineComponent({
     const uploadCheck = (file: File) => {
       const isLt2M = file.size / 1024 / 1024 < 2;
       if (!isLt2M) {
-        internalInstance?.appContext.config.globalProperties.$message.warning('图片大小不能大于2M');
+        proxy.$message.warning('图片大小不能大于2M');
       }
       return isLt2M;
     };
