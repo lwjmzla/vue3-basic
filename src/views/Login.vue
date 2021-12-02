@@ -54,7 +54,7 @@ import { defineComponent, ref, getCurrentInstance  } from 'vue';
 import ValidateInput, { RuleProp } from '../components/ValidateInput.vue';
 import ValidateForm from '../components/ValidateForm.vue';
 import Uploader from '../components/Uploader.vue';
-import { useStore } from '../store/index';
+import { useStore } from '@/store/index';
 
 export default defineComponent({
   name: 'Login',
@@ -69,7 +69,6 @@ export default defineComponent({
     }
   },
   setup() {
-    console.log(useStore);
     const store = useStore();
     console.log(store.state.account);
     const account = {

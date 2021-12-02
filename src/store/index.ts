@@ -30,7 +30,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
 }, {} as any);
 
 
-export const key: InjectionKey<Store<RootStateTypes>> = Symbol('InjectionKey');
+export const key: InjectionKey<Store<RootStateTypes>> = Symbol();
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
