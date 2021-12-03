@@ -94,13 +94,23 @@ export default defineComponent({
         console.log(val);
       }
     });
+    //console.log(data);
     let refData = toRefs(data);
-    //console.log(refData)
+    //console.log(refData);
     watch(refData.greetings, (newVal, oldVal) => {
       console.log('newVal:', newVal);
       console.log('oldVal:', oldVal);
       document.title = newVal;
     });
+    watch(data, (val) => {
+      console.log(val);
+    });
+    watch(() => data.greetings, (val) => {
+      console.log(val);
+    });
+    setTimeout(() => {
+      data.greetings = '你好';
+    }, 1000);
     return {
       testRef,
       ...refData,

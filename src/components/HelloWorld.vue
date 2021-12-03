@@ -16,15 +16,15 @@ let component = defineComponent({
     return {};
   },
   setup(props, context) {
-    console.log(props.msg);
-    console.log(context.attrs);
-    console.log(context.slots);
-    console.log(context.emit);
-    console.log(context.expose);
+    // console.log(props.msg);
+    // console.log(context.attrs);
+    // console.log(context.slots);
+    // console.log(context.emit);
+    // console.log(context.expose);
   },
   created() {
-    console.log(this.$props);
-    console.log(this.$attrs);
+    // console.log(this.$props);
+    // console.log(this.$attrs);
   }
 });
 export default component;

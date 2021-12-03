@@ -4,7 +4,9 @@ import router from './router';
 import store, { key } from './store'; // !这个key重要
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
+//import i18n from './i18n/index';
 
 const app = createApp(App).use(store, key).use(router).use(ElementPlus);
+//.use(i18n);
 app.config.globalProperties.$token = 'lwjtoken';
 app.mount('#app');
