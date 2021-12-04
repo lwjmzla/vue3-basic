@@ -27,7 +27,14 @@ export interface DetailState {
   detail: Detail;
 }
 
+export type Locale = 'zh' | 'en'
+
+export interface I18nState {
+  locale: Locale;
+}
+
 export interface RootStateTypes {
 	account: AccountState;
 	detail: DetailState;
+  i18n: I18nState
 }

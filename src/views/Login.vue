@@ -1,6 +1,7 @@
 <template>
   <div class="login-page mx-auto p-3 w-330">
-    <h5 class="my-4 text-center" @click="haha">登录到者也</h5>
+    <h5 class="my-4 text-center" @click="haha">{{$t('message.你好世界')}}登录到者也</h5>
+    <el-button @click="changeLanguage">切换语言</el-button>
     <validate-form ref="validateFormRef">
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
@@ -109,6 +110,12 @@ export default defineComponent({
     const handleFileUploaded = (rawData: any) => {
       console.log(rawData);
     };
+    const changeLanguage = () => {
+      store.commit('i18n/setLocale', store.state.i18n.locale === 'zh' ? 'en' : 'zh');
+      console.log(store.state.i18n.locale);
+      console.log(store.getters['i18n/locale']);
+      proxy.$i18n.locale = proxy.$i18n.locale === 'zh' ? 'en' : 'zh';
+    };
     return {
       validateFormRef,
       emailRules,
@@ -117,7 +124,8 @@ export default defineComponent({
       passwordRules,
       submit,
       uploadCheck,
-      handleFileUploaded
+      handleFileUploaded,
+      changeLanguage
     };
   }
 });
