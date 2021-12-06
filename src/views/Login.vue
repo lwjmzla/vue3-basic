@@ -1,4 +1,18 @@
 <template>
+  <el-scrollbar ref="scrollbarRef" @wheel.native.prevent="onHandleScroll">
+    <div class="container">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>1</li>
+        <li>2</li>
+        <li>1</li>
+        <li>2</li>
+        <li>1</li>
+        <li>2</li>
+      </ul>
+    </div>
+  </el-scrollbar>
   <div class="login-page mx-auto p-3 w-330">
     <h5 class="my-4 text-center" @click="haha">{{$t('message.你好世界')}}登录到者也</h5>
     <el-button @click="changeLanguage">切换语言</el-button>
@@ -116,6 +130,9 @@ export default defineComponent({
       console.log(store.getters['i18n/locale']);
       proxy.$i18n.locale = proxy.$i18n.locale === 'zh' ? 'en' : 'zh';
     };
+    const onHandleScroll = (e: any) => {
+      proxy.$refs.scrollbarRef.$refs.wrap.scrollLeft += e.wheelDelta / 4;
+    };
     return {
       validateFormRef,
       emailRules,
@@ -125,8 +142,19 @@ export default defineComponent({
       submit,
       uploadCheck,
       handleFileUploaded,
-      changeLanguage
+      changeLanguage,
+      onHandleScroll
     };
   }
 });
 </script>
+<style lang="scss" scoped>
+.container{
+  ul{
+    display: flex;white-space: nowrap;height: 50px;align-items: center;
+  }
+  li{
+    height: 40px;width: 80px;margin-right: 5px;background: red;display: flex;flex-shrink: 0;
+  }
+}
+</style>
