@@ -40,6 +40,7 @@
       </template>
     </validate-form>
     <Uploader
+      ref="uploaderRef"
       action="/upload"
       :beforeUpload="uploadCheck"
       @file-uploaded="handleFileUploaded"
@@ -68,8 +69,11 @@
 import { defineComponent, ref, getCurrentInstance  } from 'vue';
 import ValidateInput, { RuleProp } from '../components/ValidateInput.vue';
 import ValidateForm from '../components/ValidateForm.vue';
-import Uploader from '../components/Uploader.vue';
+import Uploader, { UploadStatus } from '../components/Uploader.vue';
 import { useStore } from '@/store/index';
+
+const uploadStatus: UploadStatus = 'success';
+console.log(uploadStatus);
 
 export default defineComponent({
   name: 'Login',
@@ -99,6 +103,7 @@ export default defineComponent({
     const { proxy } = getCurrentInstance() as any;
     proxy.$message.success(proxy.$token || '成功啦');
     const validateFormRef = ref(null);
+    const uploaderRef = ref(null);
     const emailVal = ref('');
     const emailRules: RuleProp[] = [
       { type: 'required', message: '电子邮箱地址不能为空' },
@@ -109,6 +114,8 @@ export default defineComponent({
       { type: 'required', message: '密码不能为空' }
     ];
     const submit = () => {
+      console.log((uploaderRef.value as any).name);
+      console.log(proxy.$refs.uploaderRef.name);
       const isPassValidate = (validateFormRef.value as any).validate();
       if (isPassValidate) {
         console.log(1);
@@ -134,6 +141,7 @@ export default defineComponent({
       proxy.$refs.scrollbarRef.$refs.wrap.scrollLeft += e.wheelDelta / 4;
     };
     return {
+      uploaderRef,
       validateFormRef,
       emailRules,
       emailVal,
