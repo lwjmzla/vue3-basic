@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref, PropType, reactive, onMounted } from 'vue';
+import { defineComponent, watch, ref, PropType, reactive, onMounted, computed } from 'vue';
 import { emitter } from './ValidateForm.vue';
 export interface RuleProp {
   type: 'required' | 'email';
@@ -33,13 +33,18 @@ export default defineComponent({
     });
     
     const inputRef = reactive({
-      val: '',
+      val: computed({
+        get: () => props.modelValue || '',
+        set: val => {
+          context.emit('update:modelValue', val);
+        }
+      }),
       isError: false,
       message: ''
     });
-    watch(inputRef, (newVal) => {
-      context.emit('update:modelValue', newVal.val);
-    }, { deep: true });
+    // watch(inputRef, (newVal) => {
+    //   context.emit('update:modelValue', newVal.val);
+    // }, { deep: true });
     const validateInput = () => {
       if (props.rules) {
         const isPassValidate = props.rules.every(({ type, message }) => {

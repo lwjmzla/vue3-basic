@@ -87,6 +87,9 @@ export default defineComponent({
       console.log(this);
     }
   },
+  created() {
+    console.log(this.$store.state.account.account); // 会有提示
+  },
   setup() {
     const store = useStore();
     console.log(store.state.account);
@@ -140,6 +143,10 @@ export default defineComponent({
     const onHandleScroll = (e: any) => {
       proxy.$refs.scrollbarRef.$refs.wrap.scrollLeft += e.wheelDelta / 4;
     };
+
+    // const app = document.getElementById('app');
+    // app!.style.color = 'red';
+    
     return {
       uploaderRef,
       validateFormRef,

@@ -2,11 +2,33 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/setup">setup</router-link>
+    <router-link to="/setup">setup</router-link> |
     <router-link to="/login">login</router-link>
+    <p>emitter:{{emitterVal}}</p>
   </div>
   <router-view/>
 </template>
+
+<script lang="ts">
+import { defineComponent, getCurrentInstance, ref } from 'vue';
+
+export default defineComponent({
+  components: {
+  },
+  setup() {
+    let emitterVal = ref('');
+    const { proxy } = getCurrentInstance() as any;
+    console.log(proxy.$emitter);
+    proxy.$emitter.on('news-notify', (val: string) => {
+      emitterVal.value = val;
+    });
+    return {
+      emitterVal
+    };
+  }
+});
+</script>
+
 
 <style lang="scss">
 *{

@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, reactive, toRefs, ComputedRef, onMounted, onUnmounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
+import { ref, computed, reactive, toRefs, ComputedRef, onMounted, onUnmounted, onUpdated, onRenderTracked, onRenderTriggered, watch, getCurrentInstance } from 'vue';
 import useMousePosition from '@/hooks/useMousePosition';
 import useUrlLoader from '@/hooks/useUrlLoader';
 interface DataProps {
@@ -49,6 +49,8 @@ export default {
     // }
     onMounted(() => {
       console.log('onMounted1');
+      const { proxy } = getCurrentInstance() as any;
+      proxy.$emitter.emit('news-notify', 'about');
     });
     onUpdated(() => {
       console.log('onUpdated');

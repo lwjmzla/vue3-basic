@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
+import { defineComponent, ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch, getCurrentInstance } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Test from '@/components/Test.vue';
 import useClickOutside from '../hooks/useClickOutside';
@@ -57,6 +57,8 @@ export default defineComponent({
     onMounted(() => {
       console.log('onMounted');
       console.log(testRef.value);
+      const { proxy } = getCurrentInstance() as any;
+      proxy.$emitter.emit('news-notify', 'home');
     });
     onUpdated(() => {
       console.log('onUpdated');
