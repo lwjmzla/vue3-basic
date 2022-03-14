@@ -16,11 +16,21 @@
         </div>
       </template>
     </Suspense>
+    <Suspense>
+      <template #default>
+        <AsyncComponent2 v-model="num" v-model:str="str"></AsyncComponent2>
+      </template>
+      <template #fallback>
+        <div>
+          Loading2...
+        </div>
+      </template>
+    </Suspense>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref } from 'vue';
+import { defineComponent, watch, ref, defineAsyncComponent } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue';
 import AsyncComponent from '@/components/AsyncComponent.vue'; 
 import ValidateInput, { RuleProp } from '@/components/ValidateInput.vue';
@@ -28,6 +38,7 @@ export default defineComponent({
   components: {
     HelloWorld,
     AsyncComponent,
+    AsyncComponent2: defineAsyncComponent(() => import('@/components/AsyncComponent2.vue')),
     ValidateInput
   },
   setup() {

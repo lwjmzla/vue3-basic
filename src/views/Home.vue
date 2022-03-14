@@ -1,5 +1,8 @@
 <template>
   <div class="home" ref="homeRef">
+    {{data}}
+    <div>{{m3}}</div>
+    
     <el-input-number
       v-model="price"
       :controls="false"
@@ -24,7 +27,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
+import { defineComponent, ref, shallowRef, computed, reactive, shallowReactive, toRaw, markRaw,
+         toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Test from '@/components/Test.vue';
 import useClickOutside from '../hooks/useClickOutside';
@@ -80,7 +84,7 @@ export default defineComponent({
       console.log(newVal);
     });
 
-    let data: DataProps = reactive({
+    let data: any = reactive({
       price: 0,
       count: 0,
       double: computed(() => data.count * 2),
@@ -92,15 +96,25 @@ export default defineComponent({
       // }
       handleChange: (val: number) =>  {
         console.log(val);
+      },
+    });
+    const m3 = reactive({
+      name: 'lwj',
+      age: 18,
+      car: {
+        name: 'benz',
+        color: 'red'
       }
     });
-    //console.log(data);
+    console.log(m3);
+    const toRawM3 = toRaw(m3);
+    console.log(toRawM3);
     let refData = toRefs(data);
     //console.log(refData);
     watch(refData.greetings, (newVal, oldVal) => {
       console.log('newVal:', newVal);
       console.log('oldVal:', oldVal);
-      document.title = newVal;
+      //document.title = newVal;
     });
     watch(data, (val) => {
       console.log(val);
@@ -109,11 +123,13 @@ export default defineComponent({
       console.log(val);
     });
     setTimeout(() => {
-      data.greetings = '你好';
+      //data.greetings = '你好';
     }, 1000);
     return {
       testRef,
       ...refData,
+      data,
+      m3
       // greetings,
       // updateGreetings
     };

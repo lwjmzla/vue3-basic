@@ -33,12 +33,8 @@ export default defineComponent({
     asyncData.value = await new Promise<IAsyncData>((resolve, reject) => {
       setTimeout(() => {
         resolve({ name: 'lwj' });
-      }, 2000);
+      }, 1000);
     });
-    const fn = async () => {
-      return { name: 'lwj' };
-    }; 
-    console.log(await fn());
     const handleClick = () => {
       context.emit('update:modelValue', props.modelValue + 1);
       context.emit('update:str', props.str + 'a');
