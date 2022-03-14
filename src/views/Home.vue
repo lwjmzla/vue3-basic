@@ -24,10 +24,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch, getCurrentInstance } from 'vue';
+import { defineComponent, ref, provide, computed, reactive, toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch, getCurrentInstance } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Test from '@/components/Test.vue';
 import useClickOutside from '../hooks/useClickOutside';
+import { createHomeProvider } from './homeProvider';
 interface DataProps {
   price: string | number;
   count: number;
@@ -71,10 +72,10 @@ export default defineComponent({
     //   console.log('onRenderTracked')
     //   console.log(ev)
     // })
-    const greetings = ref('');
-    const updateGreetings = () => {
-      greetings.value += 'hello';
-    };
+    // const greetings = ref('');
+    // const updateGreetings = () => {
+    //   greetings.value += 'hello';
+    // };
     
     const testRef = ref<null | HTMLElement>(null); //!名称跟template的一致
     const isClickOutside  = useClickOutside(testRef);
@@ -98,6 +99,18 @@ export default defineComponent({
     });
     //console.log(data);
     let refData = toRefs(data);
+    console.log('provide--------------------');
+    const { greetings, count } = refData;
+    provide('lwj', greetings);
+    // provide('obj', {
+    //   greetings,
+    //   count
+    // });
+    createHomeProvider({
+      greetings,
+      count
+    });
+
     //console.log(refData);
     watch(refData.greetings, (newVal, oldVal) => {
       console.log('newVal:', newVal);

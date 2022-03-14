@@ -16,6 +16,9 @@
         </div>
       </template>
     </Suspense>
+    <TodoList></TodoList>
+    <ImportExcel></ImportExcel>
+    <ExportExcel></ExportExcel>
   </div>
 </template>
 
@@ -24,11 +27,17 @@ import { defineComponent, watch, ref } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue';
 import AsyncComponent from '@/components/AsyncComponent.vue'; 
 import ValidateInput, { RuleProp } from '@/components/ValidateInput.vue';
+import TodoList from '@/components/TodoList.vue';
+import ImportExcel from '@/components/excel/ImportExcel.vue';
+import ExportExcel from '@/components/excel/ExportExcel.vue';
 export default defineComponent({
   components: {
     HelloWorld,
     AsyncComponent,
-    ValidateInput
+    ValidateInput,
+    TodoList,
+    ImportExcel,
+    ExportExcel
   },
   setup() {
     const num = ref(2);

@@ -2,11 +2,16 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <slot></slot>
+    injectVal: {{injectVal}}
+    <div>
+      injectObj: {{injectObj}}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
+import { useHomeProvider } from '../views/homeProvider';
 let component = defineComponent({
   name: 'HelloWorld',
   props: {
@@ -21,6 +26,18 @@ let component = defineComponent({
     // console.log(context.slots);
     // console.log(context.emit);
     // console.log(context.expose);
+    console.log('inject--------------------');
+    const injectVal = inject('lwj', 'haha');
+    console.log(injectVal);
+    //const injectObj = inject('obj');
+    const injectObj = useHomeProvider();
+    console.log(injectObj);
+    console.log(injectObj?.count.value);
+    console.log(injectObj?.greetings);
+    return {
+      injectVal,
+      injectObj
+    };
   },
   created() {
     // console.log(this.$props);
