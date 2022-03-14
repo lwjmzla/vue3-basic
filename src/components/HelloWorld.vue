@@ -4,11 +4,16 @@
     {{keyword}}
     <h1>{{ msg }}</h1>
     <slot></slot>
+    injectVal: {{injectVal}}
+    <div>
+      injectObj: {{injectObj}}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRef, toRefs, customRef } from 'vue';
+import { defineComponent, toRef, toRefs, customRef, inject } from 'vue';
+import { useHomeProvider } from '../views/homeProvider';
 //!实现函数防抖的自定义ref
 function useDebouncedRef<T>(value: T, delay = 200) {
   let timeout: number;
@@ -51,7 +56,17 @@ let component = defineComponent({
     // console.log(context.slots);
     // console.log(context.emit);
     // console.log(context.expose);
+    console.log('inject--------------------');
+    const injectVal = inject('lwj', 'haha');
+    console.log(injectVal);
+    //const injectObj = inject('obj');
+    const injectObj = useHomeProvider();
+    console.log(injectObj);
+    console.log(injectObj?.count.value);
+    console.log(injectObj?.greetings);
     return {
+      injectVal,
+      injectObj,
       keyword
     };
   },

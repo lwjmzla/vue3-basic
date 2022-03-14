@@ -27,7 +27,7 @@
 <script lang="ts">
 import { defineComponent, ref, PropType, watch } from 'vue';
 import axios from 'axios';
-type UploadStatus = 'ready' | 'loading' | 'success' | 'error'
+export type UploadStatus = 'ready' | 'loading' | 'success' | 'error'
 type CheckFunction = (file: File) => boolean;
 export default defineComponent({
   props: {
@@ -91,6 +91,7 @@ export default defineComponent({
         });
       }
     };
+    context.expose({ name: 'lwj' }); //相当于暴露这个name属性
     return {
       fileInput,
       triggerUpload,
