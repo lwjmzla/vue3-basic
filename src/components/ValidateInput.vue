@@ -28,7 +28,7 @@ export default defineComponent({
   },
   setup(props, context) {
     onMounted(() => {
-      inputRef.val = props.modelValue;
+      //inputRef.val = props.modelValue;
       emitter.emit('form-item-created', validateInput);
     });
     

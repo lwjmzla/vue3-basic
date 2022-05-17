@@ -107,7 +107,7 @@ export default defineComponent({
     proxy.$message.success(proxy.$token || '成功啦');
     const validateFormRef = ref(null);
     const uploaderRef = ref(null);
-    const emailVal = ref('');
+    const emailVal = ref('123');
     const emailRules: RuleProp[] = [
       { type: 'required', message: '电子邮箱地址不能为空' },
       { type: 'email', message: '请输入正确的电子邮箱格式' }

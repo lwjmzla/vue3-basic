@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 import i18n from './i18n/index';
 import mitt from 'mitt';
+import './test1';
 const emitter = mitt();
 
 const app = createApp(App).use(store, key).use(router).use(ElementPlus).use(i18n);

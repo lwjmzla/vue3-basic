@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, shallowRef, computed, reactive, shallowReactive, toRaw, markRaw,provide,getCurrentInstance
+import { defineComponent, ref, shallowRef, computed, reactive, shallowReactive, toRaw, markRaw, provide, getCurrentInstance,
          toRefs, ComputedRef, onMounted, onUpdated, onRenderTracked, onRenderTriggered, watch } from 'vue';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import Test from '@/components/Test.vue';

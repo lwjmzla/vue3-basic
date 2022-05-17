@@ -11,3 +11,19 @@
 //   return a;
 // };
 // Fn1(true, 13, 12, 'a');
+
+const arr = [
+  { name: 'lwj', age: 18 },
+  { name: 'lwb', age: 18 },
+  { name: 'lwz', age: 18 },
+];
+const arr1: any = [];
+console.log(...arr);
+console.log([...arr]);
+// arr1.push(...arr); // push可以添加多个元素，才知道。。。后知后觉。
+
+function push<T>(...items: T[]): number {
+  return arr1.push(...items);
+}
+push(...arr);
+console.log('arr1', arr1);

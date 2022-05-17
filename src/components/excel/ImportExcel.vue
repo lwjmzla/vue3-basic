@@ -1,7 +1,7 @@
 <template>
   <div>
     <input ref="excel-upload-input" class="excel-upload-input" type="file" accept=".xlsx, .xls" @change="handleClick">
-    <div class="drop" @drop="handleDrop" @dragover="handleDragover" @dragenter="handleDragover">
+    <div class="drop" @drop="handleDrop" @dragover="handleDragover">
       Drop excel file here or
       <el-button :loading="loading" style="margin-left:16px;" size="mini" type="primary" @click="handleUpload">
         Browse
@@ -56,7 +56,7 @@ export default {
     handleDragover(e) {
       e.stopPropagation();
       e.preventDefault();
-      e.dataTransfer.dropEffect = 'copy';
+      e.dataTransfer.dropEffect = 'copy'; // !这个只是用来控制拖拽进去展示文字
     },
     handleUpload() {
       this.$refs['excel-upload-input'].click();
