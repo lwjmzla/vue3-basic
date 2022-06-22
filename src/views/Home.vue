@@ -87,7 +87,7 @@ export default defineComponent({
       console.log(newVal);
     });
 
-    let data: any = reactive({
+    let data: DataProps = reactive({
       price: 0,
       count: 0,
       double: computed(() => data.count * 2),

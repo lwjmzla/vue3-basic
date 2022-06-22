@@ -57,7 +57,7 @@ let component = defineComponent({
     // console.log(context.emit);
     // console.log(context.expose);
     console.log('inject--------------------');
-    const injectVal = inject('lwj', 'haha');
+    const injectVal = inject('lwj');
     console.log(injectVal);
     //const injectObj = inject('obj');
     const injectObj = useHomeProvider();

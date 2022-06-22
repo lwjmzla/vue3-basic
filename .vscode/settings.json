@@ -58,8 +58,8 @@
   "editor.quickSuggestions": {
     "strings": true
   },
-  "typescript.inlayHints.parameterNames.enabled": "all",
-  // "typescript.inlayHints.variableTypes.enabled": true,
+  //"typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.variableTypes.enabled": true,
   // "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
   "typescript.inlayHints.parameterTypes.enabled": true,
   // "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -129,6 +129,7 @@
     "vue.config.*": "*.env, .babelrc*, .codecov, .cssnanorc*, .env.*, .envrc, .htmlnanorc*, .lighthouserc.*, .mocha*, .postcssrc*, .terserrc*, api-extractor.json, ava.config.*, babel.config.*, cssnano.config.*, cypress.json, env.d.ts, htmlnanorc.*, jasmine.*, jest.config.*, jsconfig.*, karma*, lighthouserc.*, playwright.config.*, postcss.config.*, puppeteer.config.*, svgo.config.*, tailwind.config.*, tsconfig.*, tsdoc.*, unocss.config.*, vitest.config.*, webpack.config.*, windi.config.*"
   },
 
+  // 检查英文规范
   "cSpell.words": [
     "alicdn",
     "alphabetselectmenu",

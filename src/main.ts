@@ -10,6 +10,6 @@ import './test1';
 const emitter = mitt();
 
 const app = createApp(App).use(store, key).use(router).use(ElementPlus).use(i18n);
-app.config.globalProperties.$token = 'lwjtoken';
+app.config.globalProperties.$token = 'lwj-token';
 app.config.globalProperties.$emitter = emitter;
 app.mount('#app');
